@@ -1,12 +1,12 @@
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
-import java.util.ArrayList;
 
 public class WorldSeriesChampions {
     public static void main(String[] args) throws Exception {
         
-    //Initalizatio
+    //Initalization
     int restartCheck, defualtCheck, count = 0, occuranceCount = 0, winLoop = 0;
     String teamChoice;
 
@@ -17,7 +17,7 @@ public class WorldSeriesChampions {
                 "Input",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-            if (defualtCheck == JOptionPane.NO_OPTION){
+            if(defualtCheck == JOptionPane.NO_OPTION){
                 JOptionPane.showMessageDialog(null,
                     "Please use WorldSeriesWinners.txt");
                 System.exit(0);
@@ -34,6 +34,7 @@ public class WorldSeriesChampions {
                 count++;
             }
             inputFile.close(); //Closes file
+            System.out.println("Closing File\n");
 
             //User Choice
             teamChoice = JOptionPane.showInputDialog(null, 
@@ -46,15 +47,14 @@ public class WorldSeriesChampions {
                 Years.add(xYears);
                 xYears++;
             }
-            Years.remove(1);// Remove 1904
+            Years.remove(2);// Remove 1904
             Years.remove(91);// Remove 1994
-            System.out.print(Years);
 
             //Count Occurances that matches User Input and Years
             ArrayList<Integer> getYears = new ArrayList<>();
             for(String i : wins){
+                winLoop++;
                 if(i.equals(teamChoice)){
-                    winLoop++;
                     occuranceCount++;
                     getYears.add(Years.get(winLoop));
                 }
@@ -62,7 +62,7 @@ public class WorldSeriesChampions {
             getYears.toString(); //Convert array to string
 
             //Display
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                 "The " + teamChoice + " have won the World Series in the years:\n"
                 + getYears + "\n"
                 + "and the World Series " + occuranceCount + " times.");
@@ -77,6 +77,3 @@ public class WorldSeriesChampions {
         }while(restartCheck == JOptionPane.YES_OPTION);   
     }
 }
-
-
-
